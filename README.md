@@ -1,31 +1,34 @@
-ofx2Draw
-========
+ofx2d
+=====
 
-A collection of raw geometry utilities.
+A collection of small 2D geometry utilities.
 
 Introduction
 ------------
-This addon brings some basic geometry utilities to OpenFrameworks.
-
-License
--------
-This addon includes a compilation of licences distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
+This addon brings a basic 2D geometry utils to OpenFrameworks.
 
 Installation
 ------------
-Just drop the folder into your `openFrameworks/addons/` folder.
+Clone this repo into your `openFrameworks/addons/` folder. Then instantiate the class:
+
+```C++
+    #include "ofx2d.h"
+    
+    ofx2d x2d;
+
+```   
+
+Utils
+-----
+
+  - midpoint(point1, point2)
+  - intersection(p1, p2, p3, p4)
+  - remap(value, fromLow, fromHigh, toLow, toHigh)
 
 Compatibility
 ------------
-Written for OF version 0.10.1
+Written using OpenFrameworks 0.10.1
 
 Known issues
 ------------
 For bugs, see issue tracker.
-
-Version history
-------------
-It make sense to include a version history here (newest releases first), describing new features and changes to the addon. Use [git tags](http://learn.github.com/p/tagging.html) to mark release points in your repo, too!
-
-### Version 0.1 (Date):
-Describe relevant changes etc.
