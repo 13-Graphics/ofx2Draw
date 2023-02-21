@@ -21,6 +21,7 @@ Clone this repo into your `openFrameworks/addons/` folder. Then instantiate the 
 Utils
 -----
 
+  - getIndex(vector<std::string> v, std::string lookup, int notFound = -1);
   - midpoint(point1, point2)
   - intersection(p1, p2, p3, p4)
   - remap(value, fromLow, fromHigh, toLow, toHigh)
