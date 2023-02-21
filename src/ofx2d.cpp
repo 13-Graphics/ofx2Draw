@@ -1,5 +1,16 @@
 #include "ofx2d.h"
 
+int ofx2d::getIndex(vector<std::string> v, std::string s, int notFound = -1) {
+    auto it = find(v.begin(), v.end(), s);
+    if (it != v.end())
+    {
+        return it - v.begin();
+    }
+    else {
+        return notFound;
+    }
+}
+
 ofVec2f ofx2d::midpoint(ofVec2f p1, ofVec2f p2) {
     return ofVec2f((double)(p1.x+p2.x)/2,(double)(p1.y+p2.y)/2);
 }
