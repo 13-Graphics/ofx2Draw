@@ -7,13 +7,13 @@ std::string ofx2d::with_leading_zero(int value, int width)
 	return oss.str();
 }
 
-std::string ofx2d::to_lower(string s) {
+std::string ofx2d::to_lower(std::string s) {
     for (char& c : s)
         c = tolower(c);
     return s;
 }
 
-int ofx2d::getIndex(vector<std::string> v, std::string s, int notFound = -1) {
+int ofx2d::getIndex(std::vector<std::string> v, std::string s, int notFound = -1) {
     auto it = find(v.begin(), v.end(), s);
     if (it != v.end())
     {
@@ -28,13 +28,13 @@ float ofx2d::percent(float percentage, float total) {
     return (percentage / total) * 100;
 }
 
-ofVec2f ofx2d::midpoint(ofVec2f p1, ofVec2f p2) {
-    return ofVec2f((double)(p1.x+p2.x)/2,(double)(p1.y+p2.y)/2);
+glm::vec2 ofx2d::midpoint(glm::vec2 p1, glm::vec2 p2) {
+    return glm::vec2((double)(p1.x+p2.x)/2,(double)(p1.y+p2.y)/2);
 }
 
-ofVec2f ofx2d::intersection(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4) {
+glm::vec2 ofx2d::intersection(glm::vec2 p1, glm::vec2 p2, glm::vec2 p3, glm::vec2 p4) {
 
-    ofVec2f ret((double)-1,(double)-1);
+    glm::vec2 ret((double)-1,(double)-1);
 
     // Store the values for fast access and easy
     // equations-to-code conversion
