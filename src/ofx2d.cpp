@@ -65,3 +65,60 @@ double ofx2d::findDiagonal(double a, double b)
     return sqrt(a * a + b * b);
 }
 
+glm::vec4 ofx2d::getCMYK(ofColor& rgb)
+{
+	// Normalize Values
+	double nr = 0, ng = 0, nb = 0;
+	if (rgb.r > 0) {
+		nr = (double)rgb.r / 255;
+	}
+	if (rgb.g > 0) {
+		ng = (double)rgb.g / 255;
+	}
+	if (rgb.b > 0) {
+		nb = (double)rgb.b / 255;
+	}
+
+	double k = 1 - max(max(nr, ng), nb);
+	double c = 1 - nr - k;
+	double m = 1 - ng - k;
+	double y = 1 - nb - k;
+
+    /*
+    double kop = 1 - k;
+	if (kop > 0) {
+		if (c > 0) {
+			c /= kop;
+		}
+		if (m > 0) {
+			m /= kop;
+		}
+		if (y > 0) {
+			y /= kop;
+		}
+	}
+    */
+
+	return glm::vec4(c, m, y, k);
+}
+
+glm::vec3 ofx2d::getCMY(ofColor& rgb)
+{
+	// Normalize Values
+	double nr = 0, ng = 0, nb = 0;
+	if (rgb.r > 0) {
+		nr = (double)rgb.r / 255;
+	}
+	if (rgb.g > 0) {
+		ng = (double)rgb.g / 255;
+	}
+	if (rgb.b > 0) {
+		nb = (double)rgb.b / 255;
+	}
+
+	double c = 1 - nr;
+	double m = 1 - ng;
+	double y = 1 - nb;
+
+	return glm::vec3(c, m, y);
+}

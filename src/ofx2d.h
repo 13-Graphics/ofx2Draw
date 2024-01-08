@@ -21,6 +21,10 @@ public:
     static double findDiagonal(double a, double b);
 
     template<typename t> static void move(std::vector<t>& v, size_t oldIndex, size_t newIndex);
+
+    static glm::vec4 getCMYK(ofColor& rgb);
+    static glm::vec3 getCMY(ofColor& rgb);
+
 };
 
 template<typename t>
