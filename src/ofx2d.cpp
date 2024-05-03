@@ -122,3 +122,61 @@ glm::vec3 ofx2d::getCMY(ofColor& rgb)
 
 	return glm::vec3(c, m, y);
 }
+
+glm::vec3 ofx2d::getRYB(ofColor & rgb) {
+	// Rewritten from Source: https://github.com/iskolbin/lryb/blob/master/ryb.lua
+	// Using convert Table evaluated by Jean Oliver Irisson https://math.stackexchange.com/users/561007/jean-olivier-irisson
+	// IRRISON_RGB_TO_RYB
+	std::vector<std::vector<double>> c = {
+		{ 1.0, 1.0, 1.0 },
+		{ 1.0, 0.0, 0.0 },
+		{ 0.0, 1.0, 0.483 },
+		{ 0.0, 1.0, 0.0 },
+		{ 0.0, 0.0, 1.0 },
+		{ 0.309, 0.0, 0.469 },
+		{ 0.0, 0.053, 0.210 },
+		{ 0.0, 0.0, 0.0 }
+	};
+	/*
+	IRISSON_RYB_TO_RGB = {
+		{1.0, 1.0, 1.0},
+		{1.0, 0.0, 0.0},
+		{1.0, 1.0, 0.0},
+		{0.163, 0.373, 0.6},
+		{0.5, 0.0, 0.5},
+		{0.0, 0.66, 0.2},
+		{1.0, 0.5, 0.0},
+		{0.0, 0.0, 0.0}
+	},
+
+	IRRISON_RGB_TO_RYB = {
+		{1.0, 1.0, 1.0},
+		{1.0, 0.0, 0.0},
+		{0.0, 1.0, 0.483},
+		{0.0, 1.0, 0.0},
+		{0.0, 0.0, 1.0},
+		{0.309, 0.0, 0.469},
+		{0.0, 0.053, 0.210},
+		{0.0, 0.0, 0.0}
+	}
+	*/
+	
+	// Normalise colours
+	float r = (float)rgb.r / 255.f;
+	float y = (float)rgb.g / 255.f; //!! This is good (for now), see original code and comment above
+	float b = (float)rgb.b / 255.f;
+
+	std::vector<double> f000 = c[0], f001 = c[1], f010 = c[2], f011 = c[3];
+	std::vector<double> f100 = c[4], f101 = c[5], f110 = c[6], f111 = c[7];
+
+	double _r = 1.0 - r, _y = 1.0 - y, _b = 1.0 - b;
+
+	double c000 = _r * _y * _b, c001 = _r * _y * b, c010 = _r * y * _b, c011 = r * _y * _b;
+	double c100 = _r * y * b, c101 = r * _y * b, c110 = r * y * _b, c111 = r * y * b;
+
+	return {
+		c000 * f000[0] + c001 * f001[0] + c010 * f010[0] + c011 * f011[0] + c100 * f100[0] + c101 * f101[0] + c110 * f110[0] + c111 * f111[0],
+		c000 * f000[1] + c001 * f001[1] + c010 * f010[1] + c011 * f011[1] + c100 * f100[1] + c101 * f101[1] + c110 * f110[1] + c111 * f111[1],
+		c000 * f000[2] + c001 * f001[2] + c010 * f010[2] + c011 * f011[2] + c100 * f100[2] + c101 * f101[2] + c110 * f110[2] + c111 * f111[2]
+	};
+}

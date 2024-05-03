@@ -16,14 +16,15 @@ public:
 
     static glm::vec2 intersection(glm::vec2 p1, glm::vec2 p2, glm::vec2 p3, glm::vec2 p4);
 
-    static double remap (double value, double fromLow, double fromHigh, double toLow, double toHigh);
-    
+    static double remap(double value, double fromLow, double fromHigh, double toLow, double toHigh);
+   
     static double findDiagonal(double a, double b);
 
     template<typename t> static void move(std::vector<t>& v, size_t oldIndex, size_t newIndex);
 
     static glm::vec4 getCMYK(ofColor& rgb);
     static glm::vec3 getCMY(ofColor& rgb);
+	static glm::vec3 getRYB(ofColor & rgb);
 
 };
 
